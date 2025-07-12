@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function ExpenseSummary({ expenses }) {
   const total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
