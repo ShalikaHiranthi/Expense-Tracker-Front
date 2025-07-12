@@ -4,6 +4,8 @@ import axios from "axios";
 import AppNavbar from "./components/AppNavbar";
 import MonthlySummary from "./components/MonthlySummary";
 import HomePage from "./components/HomePage";
+import ImageGallery from "./components/ImageGallery";
+import ThemeProvider from "./contexts/ThemeContext";
 
 function App() {
   const [expenses, setExpenses] = useState([]);
@@ -28,24 +30,27 @@ function App() {
   };
 
   return (
-    <Router>
-      <AppNavbar />
-      <div className="container mt-4">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HomePage
-                expenses={expenses}
-                onAdd={addExpense}
-                onDelete={deleteExpense}
-              />
-            }
-          />
-          <Route path="/summary" element={<MonthlySummary />} />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <AppNavbar />
+        <div className="container mt-4">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  expenses={expenses}
+                  onAdd={addExpense}
+                  onDelete={deleteExpense}
+                />
+              }
+            />
+            <Route path="/summary" element={<MonthlySummary />} />
+            <Route path="/gallery" element={<ImageGallery />} />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
